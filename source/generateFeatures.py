@@ -71,14 +71,9 @@ def generateAllFeatures(allLandmarkCoordinates):
 
 	return generateFeatures(pointIndices1, pointIndices2, pointIndices3, pointIndices4, allLandmarkCoordinates)
 
-root = 'E:/Github/predict-facial-attractiveness/'
-landmarks = numpy.loadtxt(root + 'data/landmarks.txt', delimiter=',', usecols=range(136))
+landmarks = numpy.loadtxt('../data/my_landmarks', delimiter=',', usecols=range(136))
+if landmarks.ndim == 1: landmarks = numpy.reshape(landmarks, (1,-1))
 
 featuresALL = generateAllFeatures(landmarks)
-numpy.savetxt(root+'data/my_features.txt', featuresALL, delimiter=',', fmt = '%.04f')
-print "Generate Feature Successfully!"
-#pointIndices1 = [20, 20, 45, 45]
-#pointIndices2 = [58, 9, 58, 58]
-#pointIndices3 = [5, 7, 5, 32]
-#pointIndices4 = [13, 13, 11, 36]
-#features = generateFeatures(pointIndices1, pointIndices2, pointIndices3, pointIndices4, landmarks)
+numpy.savetxt('../data/my_features', featuresALL, delimiter=',', fmt = '%.04f')
+print("Generate Feature Successfully!")
